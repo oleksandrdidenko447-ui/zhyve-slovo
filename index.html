@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Живе Слово як Мистецтво</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #e5e5e5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .gold-text { color: #d4af37; font-family: 'Playfair Display', serif; }
+        .gold-border { border-color: rgba(212, 175, 55, 0.2); }
+        .card { background: linear-gradient(145deg, #0f0f0f, #050505); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card:hover { border-color: #d4af37; transform: scale(1.02); box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.3); }
+        .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.15), transparent 70%); z-index: -1; }
+    </style>
+</head>
+<body class="p-6 md:p-20">
+    <div class="bg-glow"></div>
+
+    <header class="max-w-4xl mx-auto text-center mb-24">
+        <h1 class="text-6xl md:text-8xl gold-text mb-6">🖤 Живе Слово</h1>
+        <p class="text-2xl text-zinc-500 italic font-light tracking-wide">Як мистецтво. Як історія. Як життя.</p>
+        <div class="mt-8 h-px w-40 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"></div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <section class="space-y-6">
+            <h2 class="text-3xl gold-text flex items-center gap-3">📂 Освітні файли</h2>
+            <div class="p-8 border gold-border rounded-3xl card space-y-6">
+                <div>
+                    <h3 class="text-zinc-400 uppercase text-xs tracking-[0.2em] mb-4">Конспекти та теорія</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-zinc-800/50 transition-all border border-transparent hover:border-zinc-700">
+                            <span>📄 Тема 1: Усвідомлене читання</span>
+                            <span class="text-amber-500 text-sm">Відкрити →</span>
+                        </a>
+                        <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-zinc-800/50 transition-all border border-transparent hover:border-zinc-700">
+                            <span>📘 Правила та схеми</span>
+                            <span class="text-amber-500 text-sm">Відкрити →</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-6">
+            <h2 class="text-3xl gold-text flex items-center gap-3">🎨 Презентації</h2>
+            <div class="p-8 border gold-border rounded-3xl card">
+                <div class="aspect-video bg-zinc-800 rounded-2xl mb-6 overflow-hidden relative group">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <p class="text-amber-500 text-xs font-bold uppercase mb-1">Свіжа робота</p>
+                        <h4 class="text-xl font-bold">Література в образах</h4>
+                    </div>
+                </div>
+                <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Кожна презентація — як сторінка графічного роману. Навчання через емоції та візуальні сенси.</p>
+                <a href="#" class="block w-full py-4 text-center bg-amber-500 text-black font-bold rounded-xl hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20">
+                    Відкрити галерею презентацій
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-32 text-center">
+        <div class="inline-flex flex-col items-center p-8 border-t gold-border">
+            <p class="text-zinc-500 mb-4">✨ Завжди відкрита до спілкування</p>
+            <div class="flex gap-6">
+                <a href="https://t.me/yourname" class="text-amber-500 hover:text-white transition-colors">Telegram</a>
+                <a href="mailto:your@email.com" class="text-amber-500 hover:text-white transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
