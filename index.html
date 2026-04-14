@@ -1,78 +1,690 @@
-<!DOCTYPE html>
+https://drive.google.com/drive/folders/1OWZKQhBzP9v1kajnl4-G5VFJy1V-qqPO?usp=sharing<!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Живе Слово як Мистецтво</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #050505; color: #e5e5e5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .gold-text { color: #d4af37; font-family: 'Playfair Display', serif; }
-        .gold-border { border-color: rgba(212, 175, 55, 0.2); }
-        .card { background: linear-gradient(145deg, #0f0f0f, #050505); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card:hover { border-color: #d4af37; transform: scale(1.02); box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.3); }
-        .bg-glow { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.15), transparent 70%); z-index: -1; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Живе Слово як Мистецтво</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #a07828;
+    --gold-light: #b8922e;
+    --gold-dim: rgba(160,120,40,0.1);
+    --gold-line: rgba(160,120,40,0.25);
+    --bg: #faf7f2;
+    --bg2: #ffffff;
+    --bg3: #f3ede3;
+    --text: #1e1a14;
+    --muted: #6b6355;
+    --muted2: #a09880;
+    --radius: 20px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── GLOW ─── */
+  .glow-top {
+    position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 600px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(160,120,40,0.08) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gold-line);
+    padding: 0 clamp(1rem, 5vw, 4rem);
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted); font-size: 0.82rem; text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── SECTIONS ─── */
+  section { position: relative; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 3rem); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+  .hero-title span { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+  .divider {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 2.5rem;
+  }
+  .hero-quote {
+    font-size: 0.9rem; color: var(--muted);
+    max-width: 420px; margin: 0 auto;
+    border-left: 2px solid var(--gold-line);
+    padding-left: 1rem;
+    text-align: left;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--muted2); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .scroll-hint::after {
+    content: ''; display: block;
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold-line), transparent);
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .sec-header { margin-bottom: 3rem; }
+  .sec-label {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--text); line-height: 1.2;
+  }
+  .sec-desc { color: var(--muted); margin-top: 0.6rem; max-width: 520px; }
+
+  /* ─── SECTION SPACING ─── */
+  .section-block { padding: 6rem 0; border-top: 1px solid rgba(0,0,0,0.07); }
+
+  /* ─── NUSh ─── */
+  .nush-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .nush-card {
+    background: var(--bg2);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .nush-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .nush-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+  .nush-card h3 { font-size: 1rem; font-weight: 600;  margin-bottom: 0.6rem; }
+  .nush-card p { color: var(--muted); font-size: 0.88rem; }
+  .nush-card ul { list-style: none; margin-top: 0.8rem; }
+  .nush-card ul li {
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .nush-card ul li::before {
+    content: '✦';
+    position: absolute; left: 0;
+    color: var(--gold); font-size: 0.55rem; top: 0.45rem;
+  }
+  .nush-highlight {
+    background: var(--bg2);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+    padding: 2rem 2.5rem;
+    margin-top: 1.5rem;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+  .nush-highlight .nh-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .nush-highlight p { color: var(--muted); font-size: 0.92rem; }
+  .nush-highlight strong { color: var(--gold-light); }
+
+  /* ─── FILES ─── */
+  .files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+  .file-group {
+    background: var(--bg2);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .file-group:hover { border-color: var(--gold-line); }
+  .file-group-title {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .file-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .file-item:last-child { border-bottom: none; }
+  .file-item:hover { padding-left: 6px; }
+  .file-item span:first-child { color: var(--text); font-size: 0.88rem; }
+  .file-arrow { color: var(--gold); font-size: 0.8rem; opacity: 0.7; }
+  .file-item:hover .file-arrow { opacity: 1; }
+
+  /* ─── DEVELOPMENTS ─── */
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .dev-card {
+    background: var(--bg2);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    transition: all 0.3s;
+  }
+  .dev-card:hover { border-color: var(--gold-line); transform: translateY(-3px); }
+  .dev-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .dev-card h3 { font-size: 1rem; font-weight: 600;  margin-bottom: 0.4rem; }
+  .dev-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+  .dev-card ul { list-style: none; }
+  .dev-card ul li {
+    font-size: 0.85rem; color: var(--muted);
+    padding: 0.3rem 0 0.3rem 1.1rem;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .dev-card ul li:last-child { border-bottom: none; }
+  .dev-card ul li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--muted2); font-size: 0.75rem;
+  }
+  .dev-callout {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  /* ─── PRESENTATIONS ─── */
+  .pres-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .pres-card {
+    background: var(--bg2);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .pres-card:hover { border-color: var(--gold-line); transform: translateY(-4px); }
+  .pres-thumb {
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    position: relative;
+    overflow: hidden;
+  }
+  .pres-thumb iframe {
+    width: 100%; height: 100%;
+    border: none; pointer-events: none;
+  }
+  .pres-overlay {
+    position: absolute; inset: 0;
+    background: rgba(30,26,20,0.5);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .pres-card:hover .pres-overlay { opacity: 1; }
+  .pres-play {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .pres-body { padding: 1.3rem 1.5rem; }
+  .pres-tag {
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .pres-body h3 { font-size: 0.95rem;  margin-bottom: 0.4rem; }
+  .pres-body p { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; }
+  .pres-btn {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    border: 1px solid var(--gold-line);
+    border-radius: 30px;
+    color: var(--gold);
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .pres-btn:hover { background: var(--gold); color: #000; }
+
+  /* ─── REVIEWS ─── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: var(--bg2);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    position: relative;
+  }
+  .review-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.25;
+    position: absolute;
+    top: 0.5rem; left: 1.2rem;
+    line-height: 1;
+  }
+  .review-text { color: var(--muted); font-size: 0.9rem; font-style: italic; margin-bottom: 1rem; padding-top: 1.5rem; }
+  .review-author { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.08em; }
+
+  /* ─── CONTACT ─── */
+  #contact { padding: 6rem 0 5rem; border-top: 1px solid rgba(0,0,0,0.06); }
+  .contact-inner {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; max-width: 480px; margin: 0 auto;
+  }
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;  margin-bottom: 0.8rem;
+  }
+  .contact-sub { color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    border: 1px solid var(--gold-line);
+    border-radius: 40px;
+    color: var(--gold); font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    color: var(--muted2);
+    font-size: 0.78rem;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    .nush-grid, .files-grid, .dev-grid, .pres-gallery, .reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-<body class="p-6 md:p-20">
-    <div class="bg-glow"></div>
+<body>
 
-    <header class="max-w-4xl mx-auto text-center mb-24">
-        <h1 class="text-6xl md:text-8xl gold-text mb-6">🖤 Живе Слово</h1>
-        <p class="text-2xl text-zinc-500 italic font-light tracking-wide">Як мистецтво. Як історія. Як життя.</p>
-        <div class="mt-8 h-px w-40 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"></div>
-    </header>
+<div class="glow-top"></div>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        
-        <section class="space-y-6">
-            <h2 class="text-3xl gold-text flex items-center gap-3">📂 Освітні файли</h2>
-            <div class="p-8 border gold-border rounded-3xl card space-y-6">
-                <div>
-                    <h3 class="text-zinc-400 uppercase text-xs tracking-[0.2em] mb-4">Конспекти та теорія</h3>
-                    <div class="space-y-3">
-                        <a href="https://drive.google.com/drive/folders/1OWZKQhBzP9v1kajnl4-G5VFJy1V-qqPO?usp=drive_link" class="flex justify-between items-center p-4 rounded-xl hover:bg-zinc-800/50 transition-all border border-transparent hover:border-zinc-700">
-                            <span>📄 від смішного до великого</span>
-                            <span class="text-amber-500 text-sm">Відкрити →</span>
-                        </a>
-                        <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-zinc-800/50 transition-all border border-transparent hover:border-zinc-700">
-                            <span>📘 Правила та схеми</span>
-                            <span class="text-amber-500 text-sm">Відкрити →</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">🖤 Живе Слово</a>
+  <ul class="nav-links">
+    <li><a href="#nush">Концепція</a></li>
+    <li><a href="#files">Файли</a></li>
+    <li><a href="#developments">Розробки</a></li>
+    <li><a href="#presentations">Презентації</a></li>
+    <li><a href="#contact">Контакт</a></li>
+  </ul>
+</nav>
 
-        <section class="space-y-6">
-            <h2 class="text-3xl gold-text flex items-center gap-3">🎨 Презентації</h2>
-            <div class="p-8 border gold-border rounded-3xl card">
-                <div class="aspect-video bg-zinc-800 rounded-2xl mb-6 overflow-hidden relative group">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <p class="text-amber-500 text-xs font-bold uppercase mb-1">Свіжа робота</p>
-                        <h4 class="text-xl font-bold">Література в образах</h4>
-                    </div>
-                </div>
-<p class="text-zinc-400 text-sm mb-6 leading-relaxed">Навчання через емоції та візуальні сенси. Переглядайте слайди прямо тут або відкрийте на весь екран.</p>
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">PROОсвіта · Вчитель української мови та літератури</p>
+  <h1 class="hero-title">Живе<br><span>Слово</span><br>як мистецтво</h1>
+  <p class="hero-sub">Як мистецтво. Як історія. Як життя.</p>
+  <div class="divider"></div>
+  <blockquote class="hero-quote">
+    🖤 Я навчаю через образ, емоцію та сенс,<br>
+    щоб учень <em>відчував</em> слово
+  </blockquote>
+  <div class="scroll-hint">Гортайте</div>
+</section>
 
-<div class="aspect-video w-full rounded-xl overflow-hidden border gold-border mb-4 bg-zinc-900">
-    <iframe src="https://docs.google.com/presentation/d/1eBMoWF2fEHPlvVEZfKB2GK6F0Pi7LCq9/preview" width="100%" height="100%" allowfullscreen="true"></iframe>
-</div>
-
-<a href="https://docs.google.com/presentation/d/1eBMoWF2fEHPlvVEZfKB2GK6F0Pi7LCq9/edit?usp=sharing" target="_blank" class="block w-full py-4 text-center bg-amber-500 text-black font-bold rounded-xl hover:bg-amber-400 transition-all">
-    Відкрити на весь екран
-</a>  
-</div><footer class="mt-32 text-center pb-16">
-    <div class="inline-flex flex-col items-center p-8 border-t gold-border">
-        <p class="text-zinc-500 mb-4">✨ Завжди відкрита до спілкування</p>
-        <div class="flex gap-6">
-            <a href="https://t.me/yourname" class="text-amber-500 hover:text-white transition-colors">Telegram</a>
-        </div>
+<!-- NUSh -->
+<section id="nush" class="section-block">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-label">🏛️ Методологія</p>
+      <h2 class="sec-title">Концепція НУШ</h2>
+      <p class="sec-desc">Освіта нового покоління — навчання через розуміння і відчуття слова</p>
     </div>
-</footer>
 
-</body>
-</html>              
+    <div class="nush-grid">
+      <div class="nush-card">
+        <div class="nush-icon">📖</div>
+        <h3>Основні принципи</h3>
+        <ul>
+          <li>Дитиноцентризм</li>
+          <li>Компетентнісний підхід</li>
+          <li>Навчання через практику</li>
+        </ul>
+      </div>
+      <div class="nush-card">
+        <div class="nush-icon">🎯</div>
+        <h3>Цілі навчання</h3>
+        <ul>
+          <li>Розвиток критичного мислення</li>
+          <li>Формування живого мовлення</li>
+          <li>Усвідомлене читання</li>
+        </ul>
+      </div>
+      <div class="nush-card">
+        <div class="nush-icon">💡</div>
+        <h3>Мій підхід</h3>
+        <p>Кожен урок — це не передача правил, а занурення в образ. Учень думає, відчуває, творить.</p>
+      </div>
+    </div>
 
+    <div class="nush-highlight">
+      <span class="nh-icon">✨</span>
+      <p>Навчання — це не про правила, а про <strong>розуміння і відчуття слова</strong>. Коли учень відчуває текст як живий організм — він вже ніколи не забуде.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILES -->
+<section id="files" class="section-block">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-label">📂 Ресурси</p>
+      <h2 class="sec-title">Освітні файли</h2>
+      <p class="sec-desc">База знань для учнів — конспекти, теорія, диктанти та матеріали до НМТ</p>
+    </div>
+
+    <div class="files-grid">
+      <div class="file-group">
+        <div class="file-group-title">📄 Конспекти та теорія</div>
+        <a href="https://drive.google.com/drive/folders/1OWZKQhBzP9v1kajnl4-G5VFJy1V-qqPO?usp=drive_link" class="file-item" target="_blank">
+          <span>від смішного до великого</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Правила та схеми</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Таблиці</span>
+          <span class="file-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="file-group">
+        <div class="file-group-title">📝 Диктанти</div>
+        <a href="#" class="file-item">
+          <span>Диктант 1</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Диктант 2</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Диктант 3</span>
+          <span class="file-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="file-group">
+        <div class="file-group-title">📊 Підготовка до НМТ</div>
+        <a href="#" class="file-item">
+          <span>Завдання частина A</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Завдання частина B</span>
+          <span class="file-arrow">→</span>
+        </a>
+        <a href="#" class="file-item">
+          <span>Матеріали</span>
+          <span class="file-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- GOOGLE DRIVE VIEWER -->
+    <div style="margin-top:2.5rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+        <p style="font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">📁 Google Drive — перегляд папки</p>
+        <a href="https://drive.google.com/drive/folders/1OWZKQhBzP9v1kajnl4-G5VFJy1V-qqPO?usp=sharing" target="_blank"
+           style="font-size:0.78rem; color:var(--gold); text-decoration:none; border:1px solid var(--gold-line); padding:0.35rem 0.9rem; border-radius:20px; transition:all 0.2s;"
+           onmouseover="this.style.background='var(--gold)';this.style.color='#fff';"
+           onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">
+          Відкрити в Drive →
+        </a>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--gold-line); border-radius:var(--radius); overflow:hidden;">
+        <iframe
+          src="https://drive.google.com/embeddedfolderview?id=1OWZKQhBzP9v1kajnl4-G5VFJy1V-qqPO#list"
+          style="width:100%; height:420px; border:none; display:block;"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p style="font-size:0.75rem; color:var(--muted); margin-top:0.6rem; text-align:center;">
+        💡 Клацніть на файл — він відкриється у Google Drive для перегляду
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPMENTS -->
+<section id="developments" class="section-block">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-label">✍️ Авторські матеріали</p>
+      <h2 class="sec-title">Мої розробки</h2>
+      <p class="sec-desc">Уроки, методичні розробки та аналіз творів — все авторське</p>
+    </div>
+
+    <div class="dev-grid">
+      <div class="dev-card">
+        <div class="dev-card-icon">🧠</div>
+        <h3>Уроки</h3>
+        <p>Авторські розробки уроків з живим сюжетом</p>
+        <ul>
+          <li>Урок 1</li>
+          <li>Урок 2</li>
+        </ul>
+      </div>
+      <div class="dev-card">
+        <div class="dev-card-icon">🎯</div>
+        <h3>Методичні розробки</h3>
+        <p>Педагогічні інновації у практиці</p>
+        <ul>
+          <li>Методика 1</li>
+          <li>Методика 2</li>
+        </ul>
+      </div>
+      <div class="dev-card">
+        <div class="dev-card-icon">📚</div>
+        <h3>Аналіз творів</h3>
+        <p>Глибоке прочитання програмних текстів</p>
+        <ul>
+          <li>Твір 1</li>
+          <li>Твір 2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dev-callout">
+      ✨ Кожен урок — це історія, яку проживає учень
+    </div>
+  </div>
+</section>
+
+<!-- PRESENTATIONS -->
+<section id="presentations" class="section-block">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-label">🎨 Галерея</p>
+      <h2 class="sec-title">Презентації</h2>
+      <p class="sec-desc">🖤 Кожна презентація — як сторінка графічного роману</p>
+    </div>
+
+    <div class="pres-gallery">
+      <!-- FEATURED: реальна презентація -->
+      <div class="pres-card" style="grid-column: 1 / -1;">
+        <div class="pres-thumb" style="aspect-ratio: 16/7;">
+          <iframe src="https://docs.google.com/presentation/d/1eBMoWF2fEHPlvVEZfKB2GK6F0Pi7LCq9/preview" allowfullscreen></iframe>
+          <div class="pres-overlay">
+            <a href="https://docs.google.com/presentation/d/1eBMoWF2fEHPlvVEZfKB2GK6F0Pi7LCq9/edit?usp=sharing" target="_blank" class="pres-play">▶</a>
+          </div>
+        </div>
+        <div class="pres-body">
+          <p class="pres-tag">Свіжа робота</p>
+          <h3>Література в образах</h3>
+          <p>Навчання через емоції та візуальні сенси. Переглядайте слайди прямо тут або відкрийте на весь екран.</p>
+          <a href="https://docs.google.com/presentation/d/1eBMoWF2fEHPlvVEZfKB2GK6F0Pi7LCq9/edit?usp=sharing" target="_blank" class="pres-btn">Відкрити →</a>
+        </div>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-thumb">
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted2);">🎭</div>
+        </div>
+        <div class="pres-body">
+          <p class="pres-tag">Презентація</p>
+          <h3>Назва твору 1</h3>
+          <p>Короткий емоційний опис роботи</p>
+          <a href="#" class="pres-btn">Переглянути →</a>
+        </div>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-thumb">
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted2);">🎭</div>
+        </div>
+        <div class="pres-body">
+          <p class="pres-tag">Презентація</p>
+          <h3>Назва твору 2</h3>
+          <p>Короткий емоційний опис роботи</p>
+          <a href="#" class="pres-btn">Переглянути →</a>
+        </div>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-thumb">
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--muted2);">🎭</div>
+        </div>
+        <div class="pres-body">
+          <p class="pres-tag">Презентація</p>
+          <h3>Назва твору 3</h3>
+          <p>Короткий емоційний опис роботи</p>
+          <a href="#" class="pres-btn">Переглянути →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section-block">
+  <div class="container">
+    <div class="sec-header">
+      <p class="sec-label">⭐ Відгуки</p>
+      <h2 class="sec-title">Що кажуть учні</h2>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <p class="review-text">Дуже зрозуміло і цікаво пояснює матеріал. Ніколи не думала, що українська може бути такою живою.</p>
+        <span class="review-author">— Учениця 11 класу</span>
+      </div>
+      <div class="review-card">
+        <p class="review-text">Завдяки урокам склав НМТ на високий бал. Підхід через образ дуже допоміг запам'ятати складні теми.</p>
+        <span class="review-author">— Випускник 2024</span>
+      </div>
+      <div class="review-card">
+        <p class="review-text">Кожен урок — як окрема подорож. Вчителька вміє зробити так, щоб текст оживав.</p>
+        <span class="review-author">— Учень 10 класу</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="divider" style="margin-bottom:2rem;"></div>
+      <h2 class="contact-title">Зв'яжіться зі мною</h2>
+      <p class="contact-sub">✨ Завжди відкрита до спілкування та навчання</p>
+      <div class="contact-links">
+        <a href="https://t.me/yourname" class="contact-link" target="_blank">✈️ Telegram</a>
+        <a href="/cdn-cgi/l/email-protection#542d3b2126143139353d387a373b39" class="contact-link">✉️ Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>🖤 Живе Слово як Мистецтво &nbsp;·&nbsp; PROОсв�
